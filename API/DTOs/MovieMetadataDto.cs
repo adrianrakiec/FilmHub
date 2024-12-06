@@ -1,0 +1,18 @@
+namespace API.DTOs;
+
+public class MovieMetadataDto
+{
+    public int Id { get; set; }
+    public string? OmdbId { get; set; }
+    public string? Type { get; set; }
+    public int? Year { get; set; }
+    public string? PosterUrl { get; set; }
+    public string? Plot { get; set; }
+    public string? Actors { get; set; } 
+    public string? Director { get; set; }
+    public string? Writer { get; set; } 
+    public string? Genre { get; set; } 
+    public string? Awards { get; set; } 
+    public string? Ratings { get; set; } 
+    public DateTime? LastUpdated { get; set; } 
+}

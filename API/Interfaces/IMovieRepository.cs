@@ -1,8 +1,9 @@
-using API.Entities;
+using API.DTOs;
 
 namespace API.Interfaces;
 
 public interface IMovieRepository
 {
-    Task<IEnumerable<Movie>> GetMovies();
+    Task<MovieDto?> GetByIdAsync(int id);
+    Task<MovieDto> CreateMovieAsync(CreateMovieDto createMovieDto);
 }
