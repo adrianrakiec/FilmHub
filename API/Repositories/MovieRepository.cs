@@ -34,4 +34,19 @@ public class MovieRepository(DataContext context, IMapper mapper) : IMovieReposi
 
         return mapper.Map<MovieDto>(movie);
     }
+
+    public async Task<Movie?> GetFullMovieByIdAsync(int id)
+    {
+        return await context.Movies.FindAsync(id);
+    }
+
+    public async Task<bool> SaveAllAsync()
+    {
+        return await context.SaveChangesAsync() > 0;
+    }
+
+    public void DeleteMovie(Movie movie)
+    {
+        context.Movies.Remove(movie);
+    }
 }
