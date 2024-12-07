@@ -1,6 +1,8 @@
 using API.Data;
+using API.Helpers;
 using API.Interfaces;
 using API.Repositories;
+using API.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,8 +17,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(opts =>
     opts.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+builder.Services.Configure<OmdbSettings>(builder.Configuration.GetSection("OMDbSettings"));
+builder.Services.AddHttpClient();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+builder.Services.AddScoped<IOmdbService, OmdbService>();
 
 var app = builder.Build();
 

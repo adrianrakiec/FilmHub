@@ -18,7 +18,7 @@ public class MovieRepository(DataContext context, IMapper mapper) : IMovieReposi
             .FirstOrDefaultAsync(m => m.Id == id);
     }
 
-    public async Task<MovieDto> CreateMovieAsync(CreateMovieDto createMovieDto)
+    public async Task<MovieDto> CreateMovieAsync(CreateMovieDto createMovieDto, MovieMetadata movieMetadata)
     {
         var movie = new Movie
         {
@@ -26,12 +26,8 @@ public class MovieRepository(DataContext context, IMapper mapper) : IMovieReposi
             UserNotes = createMovieDto.UserNotes
         };
 
-        var metaData = new MovieMetadata
-        {
-            LastUpdated = DateTime.Now
-        };
-
-        movie.Metadata = metaData;
+        movieMetadata.LastUpdated = DateTime.Now;
+        movie.Metadata = movieMetadata;
 
         context.Movies.Add(movie);
         await context.SaveChangesAsync();

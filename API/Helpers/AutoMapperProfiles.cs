@@ -10,5 +10,11 @@ public class AutoMapperProfiles : Profile
     {
         CreateMap<Movie, MovieDto>();
         CreateMap<MovieMetadata, MovieMetadataDto>();
+        CreateMap<OmdbApiResponse, MovieMetadata>()
+            .ForMember(dest => dest.PosterUrl, opt => opt.MapFrom(src => src.Poster)) 
+            .ForMember(dest => dest.ImdbId, opt => opt.MapFrom(src => src.ImdbID)) 
+            .ForMember(dest => dest.Ratings, opt =>
+                opt.MapFrom(src => src.Ratings!
+                    .FirstOrDefault(r => r.Source == "Internet Movie Database")!.Value));
     }
 }
