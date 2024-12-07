@@ -69,7 +69,18 @@ namespace API.Controllers
             if(await movieRepository.SaveAllAsync())
                 return NoContent();
 
-            return BadRequest(new { message = "problem during deletion!" });
+            return BadRequest(new { message = "Problem during deletion!" });
+        }
+
+        [HttpGet("search")]
+        public async Task<ActionResult<OmdbSearchResponse?>> SearchMovies(string query, int page)
+        {
+            var results = await omdbService.SearchMoviesAsync(query, page);
+
+            if(results?.Search == null)
+                return NotFound(new { message = "No matching results"});
+
+            return results;
         }
     }
 }

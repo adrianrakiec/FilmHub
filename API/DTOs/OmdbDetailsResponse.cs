@@ -1,6 +1,6 @@
 namespace API.DTOs;
 
-public class OmdbApiResponse
+public class OmdbDetailsResponse
 {
     public string? Title { get; set; }
     public string? Year { get; set; }

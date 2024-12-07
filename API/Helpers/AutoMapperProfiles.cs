@@ -10,7 +10,7 @@ public class AutoMapperProfiles : Profile
     {
         CreateMap<Movie, MovieDto>();
         CreateMap<MovieMetadata, MovieMetadataDto>();
-        CreateMap<OmdbApiResponse, MovieMetadata>()
+        CreateMap<OmdbDetailsResponse, MovieMetadata>()
             .ForMember(dest => dest.PosterUrl, opt => opt.MapFrom(src => src.Poster)) 
             .ForMember(dest => dest.ImdbId, opt => opt.MapFrom(src => src.ImdbID)) 
             .ForMember(dest => dest.Ratings, opt =>

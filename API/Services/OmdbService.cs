@@ -26,8 +26,24 @@ public class OmdbService(HttpClient httpClient, IOptions<OmdbSettings> options, 
             PropertyNameCaseInsensitive = true, 
         };
 
-        var movieDetails = JsonSerializer.Deserialize<OmdbApiResponse>(jsonResponse, options);
+        var movieDetails = JsonSerializer.Deserialize<OmdbDetailsResponse>(jsonResponse, options);
 
         return mapper.Map<MovieMetadata>(movieDetails);
+    }
+
+    public async Task<OmdbSearchResponse?> SearchMoviesAsync(string query, int page)
+    {
+        var url = $"{settings.BaseUrl}?apikey={settings.ApiKey}&s={Uri.EscapeDataString(query)}&page={page}";
+
+        var response = await httpClient.GetAsync(url);
+        response.EnsureSuccessStatusCode();
+
+        var jsonResponse = await response.Content.ReadAsStringAsync();
+        var options = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true,
+        };
+
+        return JsonSerializer.Deserialize<OmdbSearchResponse>(jsonResponse, options);
     }
 }
