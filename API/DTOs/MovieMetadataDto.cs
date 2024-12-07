@@ -3,9 +3,9 @@ namespace API.DTOs;
 public class MovieMetadataDto
 {
     public int Id { get; set; }
-    public string? OmdbId { get; set; }
+    public string? ImdbId { get; set; }
     public string? Type { get; set; }
-    public int? Year { get; set; }
+    public string? Year { get; set; }
     public string? PosterUrl { get; set; }
     public string? Plot { get; set; }
     public string? Actors { get; set; } 
