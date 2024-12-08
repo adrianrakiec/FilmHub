@@ -14,6 +14,7 @@ public class MovieMetadata
     public string? Genre { get; set; } 
     public string? Awards { get; set; } 
     public string? Ratings { get; set; } 
+    public string? Runtime { get; set; } 
     public DateTime LastUpdated { get; set; } 
     public Movie Movie { get; set; } = null!;
     public int MovieId { get; set; }

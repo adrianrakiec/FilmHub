@@ -13,6 +13,7 @@ public class MovieMetadataDto
     public string? Writer { get; set; } 
     public string? Genre { get; set; } 
     public string? Awards { get; set; } 
-    public string? Ratings { get; set; } 
+    public string? Ratings { get; set; }
+    public string? Runtime { get; set; } 
     public DateTime? LastUpdated { get; set; } 
 }
