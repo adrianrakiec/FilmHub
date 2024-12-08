@@ -3,7 +3,7 @@
     <form [formGroup]="addMovieForm" (ngSubmit)="onSubmit()" class="movie-form">
         <div class="movie-form__group">
             <label for="title">Title:</label>
-            <input id="title" formControlName="title" formControlName="title" class="movie-form__input" />
+            <input type="search" id="title" formControlName="title" formControlName="title" class="movie-form__input" />
         </div>
 
         <div class="movie-form__group">
@@ -20,6 +20,6 @@
         </div>
         }
 
-        <button type="submit">Search</button>
+        <button type="submit">Add to watch list</button>
     </form>
 </section>

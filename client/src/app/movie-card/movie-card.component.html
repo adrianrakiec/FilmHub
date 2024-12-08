@@ -4,6 +4,18 @@
         <div class="movie-card__actions">
             <button class="movie-card__details-btn" (click)="goToDetails(movie().id)"><i
                     class="fas fa-info-circle"></i></button>
+            <button class="movie-card__show-note" (click)="toggleClass()"><i class="fas fa-sticky-note"></i></button>
+        </div>
+        <div [class]="isNoteVisible ? 'movie-card__note isActive' : 'movie-card__note'">
+            <button class="movie-card__edit-btn" (click)="toggleEditMode()">
+                {{ isEditMode ? 'Save note' : 'Edit note' }}
+            </button>
+            @if(isEditMode) {
+            <textarea [(ngModel)]="movie().userNotes"></textarea>
+            } @else {
+            <p>Note: {{movie().userNotes || "No notes"}}</p>
+            }
+
         </div>
     </div>
     <button class="movie-card__delete-btn" (click)="deleteMovie(movie().id)">X</button>

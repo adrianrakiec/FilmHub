@@ -35,9 +35,11 @@
   text-align: center;
   transform: translateY(10em);
   transition: transform 0.3s;
+  z-index: 10;
 }
 
-.movie-card__details-btn {
+.movie-card__details-btn,
+.movie-card__show-note {
   border: none;
   background: none;
   cursor: pointer;
@@ -55,5 +57,31 @@
   color: red;
   font-weight: bold;
   font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.movie-card__note {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(-30em);
+  font-size: 1.1rem;
+  padding: 2em;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 5;
+}
+
+.isActive {
+  transform: translateY(0);
+}
+
+.movie-card__edit-btn {
+  padding: 0.2em;
+  margin-bottom: 1em;
   cursor: pointer;
 }

@@ -50,4 +50,10 @@ export class MoviesService {
       },
     });
   }
+
+  editNote(note: string, id: number) {
+    return this.http
+      .patch(this.baseUrl + `movies/note/${id}?note=${note}`, null)
+      .subscribe();
+  }
 }
