@@ -30,7 +30,7 @@ public class MovieRepository(DataContext context, IMapper mapper) : IMovieReposi
     {
         var movie = new Movie
         {
-            Title = createMovieDto.Title!,
+            Title = movieMetadata.Title!,
             UserNotes = createMovieDto.UserNotes
         };
 
