@@ -34,9 +34,10 @@ public class MovieRepository(DataContext context, IMapper mapper) : IMovieReposi
             UserNotes = createMovieDto.UserNotes
         };
 
-        movieMetadata.LastUpdated = DateTime.Now;
-        movie.Metadata = movieMetadata;
-
+        movie.Metadata = movie.Title == null ? null : new MovieMetadata { LastUpdated = DateTime.Now };
+        if(movie.Metadata == null) 
+            return mapper.Map<MovieDto>(movie);
+    
         context.Movies.Add(movie);
         await context.SaveChangesAsync();
 

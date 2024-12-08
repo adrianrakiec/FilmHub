@@ -47,6 +47,9 @@ namespace API.Controllers
             var details = await omdbService.GetMovieDetailsAsync(createMovieDto.Title);
             var createdMovie = await movieRepository.CreateMovieAsync(createMovieDto, details!);
 
+            if(createdMovie.Metadata == null)
+                return BadRequest(new { message = "There is no such movie!" });
+
             return CreatedAtAction(nameof(GetMovieById), new { id = createdMovie.Id }, createdMovie);
         }
 

@@ -48,6 +48,7 @@ export class MoviesService {
         const updatedMovies = [...this.movies(), res];
         this.movies.set(updatedMovies);
       },
+      error: (err) => alert(err.error.message),
     });
   }
 
