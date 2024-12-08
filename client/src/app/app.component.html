@@ -1,1 +1,5 @@
-<h1>{{title}}</h1>
+@for (movie of movies; track $index) {
+<p>{{movie.title}}</p>
+<p>{{movie.metadata.plot}}</p>
+<img [src]="movie.metadata.posterUrl" alt="">
+}
