@@ -50,24 +50,32 @@ namespace API.Controllers
             return CreatedAtAction(nameof(GetMovieById), new { id = createdMovie.Id }, createdMovie);
         }
 
-        [HttpPatch("{id}")]
-        public async Task<IActionResult> UpdateMovie(UpdateMovieDto updateMovieDto, int id)
+        [HttpPatch("note/{id}")]
+        public async Task<IActionResult> UpdateMovieNotes(string note, int id)
         {
             var movie = await movieRepository.GetFullMovieByIdAsync(id);
 
             if (movie == null)
                 return NotFound();
 
-            if (updateMovieDto.IsWatched.HasValue)
-            {
-                movie.IsWatched = updateMovieDto.IsWatched.Value;
-                movie.DateWatched = movie.IsWatched ? movie.DateWatched ?? DateTime.UtcNow : null;
-            }
+            movie.UserNotes = note;
+            
+            if(await movieRepository.SaveAllAsync())
+                return NoContent();
 
-            if (updateMovieDto.UserNotes != movie.UserNotes)
-            {
-                movie.UserNotes = updateMovieDto.UserNotes;
-            }
+            return BadRequest(new { message = "Problem with saving!" });
+        }
+
+        [HttpPatch("edit-viewed/{id}")]
+        public async Task<IActionResult> UpdateMovie(int id)
+        {
+            var movie = await movieRepository.GetFullMovieByIdAsync(id);
+
+            if (movie == null)
+                return NotFound();
+
+            movie.IsWatched = true;
+            movie.DateWatched = DateTime.UtcNow;
 
             if(await movieRepository.SaveAllAsync())
                 return NoContent();

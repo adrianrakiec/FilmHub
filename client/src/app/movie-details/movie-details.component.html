@@ -15,6 +15,14 @@
             <h3>Actors</h3>
             <p>{{movie.metadata.actors}}</p>
         </div>
+        <div class="movie__watched">
+            @if(movie.isWatched) {
+            <p><i class="fas fa-check"></i>
+                Viewed</p>
+            } @else {
+            <button (click)="markMovieAsViewed(movie.id)">Mark as viewed</button>
+            }
+        </div>
     </div>
     }
 </section>

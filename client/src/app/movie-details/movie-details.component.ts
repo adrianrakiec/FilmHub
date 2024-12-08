@@ -20,9 +20,17 @@ export class MovieDetailsComponent implements OnInit {
 
   loadMovie() {
     const id = this.route.snapshot.paramMap.get('id');
+
     if (!id) return;
+
     this.movieService.getMovieDetails(id).subscribe({
       next: (movie) => (this.movie = movie),
+    });
+  }
+
+  markMovieAsViewed(id: number) {
+    this.movieService.markMovieAsViewed(id).subscribe({
+      next: (_) => this.loadMovie(),
     });
   }
 }

@@ -2,10 +2,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3em;
+  padding: 4em;
 }
 
 .movie__details {
+  position: relative;
   margin-left: 2em;
 }
 
@@ -39,4 +40,10 @@
 
 .movie__rating {
   margin-bottom: 2em;
+}
+
+.movie__watched {
+  position: absolute;
+  top: 0;
+  right: 0;
 }

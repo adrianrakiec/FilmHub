@@ -1,7 +1,7 @@
 <section class="movies-list">
     <ul class="movies-list__items">
         @for (movie of movies; track $index) {
-        <li><app-movie-card [movie]="movie" /></li>
+        <li><app-movie-card [movie]="movie" (deleteItem)="onDeleteMovie($event)" /></li>
         }
     </ul>
 </section>

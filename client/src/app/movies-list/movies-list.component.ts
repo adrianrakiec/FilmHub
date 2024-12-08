@@ -22,4 +22,8 @@ export class MoviesListComponent implements OnInit {
       next: (data) => (this.movies = data),
     });
   }
+
+  onDeleteMovie(id: number): void {
+    this.movies = this.movies.filter((movie) => movie.id !== id);
+  }
 }

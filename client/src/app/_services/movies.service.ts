@@ -17,4 +17,12 @@ export class MoviesService {
   getMovieDetails(id: string) {
     return this.http.get<Movie>(this.baseUrl + `movies/${id}`);
   }
+
+  markMovieAsViewed(id: number) {
+    return this.http.patch(this.baseUrl + `movies/edit-viewed/${id}`, null);
+  }
+
+  deleteMovie(id: number) {
+    return this.http.delete(this.baseUrl + `movies/${id}`);
+  }
 }
