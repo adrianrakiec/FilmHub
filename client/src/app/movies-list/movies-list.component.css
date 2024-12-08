@@ -5,3 +5,15 @@
   gap: 1em;
   padding: 0 5em;
 }
+
+.movies-list__add-movie-btn {
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  font-size: 2rem;
+  padding: 0.2em;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  cursor: pointer;
+}

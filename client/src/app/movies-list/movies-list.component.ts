@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MoviesService } from '../_services/movies.service';
 import { MovieCardComponent } from '../movie-card/movie-card.component';
 
@@ -9,6 +10,7 @@ import { MovieCardComponent } from '../movie-card/movie-card.component';
   styleUrl: './movies-list.component.css',
 })
 export class MoviesListComponent implements OnInit {
+  private router = inject(Router);
   movieService = inject(MoviesService);
 
   ngOnInit(): void {
@@ -17,5 +19,9 @@ export class MoviesListComponent implements OnInit {
 
   getMovies(): void {
     this.movieService.getMovies();
+  }
+
+  goToAddMovie() {
+    this.router.navigateByUrl(`/add-movie`);
   }
 }

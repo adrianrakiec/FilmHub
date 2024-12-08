@@ -1,0 +1,17 @@
+<section class="movie-form-container">
+    <h2>Add film/series</h2>
+    <form [formGroup]="addMovieForm" (ngSubmit)="onSubmit()" class="movie-form">
+        <div class="movie-form__group">
+            <label for="title">Title:</label>
+            <input id="title" formControlName="title" formControlName="title" class="movie-form__input" />
+        </div>
+
+        <div class="movie-form__group">
+            <label for="userNotes">User Notes (optional):</label>
+            <textarea id="userNotes" formControlName="userNotes" formControlName="userNotes"
+                class="movie-form__textarea"></textarea>
+        </div>
+
+        <button type="submit">Search</button>
+    </form>
+</section>
