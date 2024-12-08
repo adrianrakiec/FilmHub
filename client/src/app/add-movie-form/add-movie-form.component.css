@@ -21,7 +21,16 @@
   resize: vertical;
 }
 
+.movie-search-results {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+  gap: 1em;
+}
+
 button[type="submit"] {
   width: 15%;
   padding: 0.7em 1.4em;
+  margin-bottom: 2em;
 }

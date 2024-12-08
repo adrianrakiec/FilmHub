@@ -7,7 +7,7 @@
 }
 
 .movies-list__add-movie-btn {
-  position: absolute;
+  position: fixed;
   bottom: 10%;
   right: 10%;
   font-size: 2rem;

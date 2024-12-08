@@ -12,6 +12,14 @@
                 class="movie-form__textarea"></textarea>
         </div>
 
+        @if (searchResults()) {
+        <div class="movie-search-results">
+            @for (result of searchResults()?.search; track $index) {
+            <app-search-result-movie [result]="result" (selectTitle)="fillTitle($event)" />
+            }
+        </div>
+        }
+
         <button type="submit">Search</button>
     </form>
 </section>

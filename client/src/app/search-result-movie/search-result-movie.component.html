@@ -1,0 +1,9 @@
+<div class="movie-card">
+    <img [src]="result().poster" [alt]="result().title" class="movie-card__poster" />
+    <div class="movie-card__details">
+        <button (click)="onClick()" type="button">
+            <h4>{{ result().title }}</h4>
+        </button>
+        <p>Year: {{ result().year }}</p>
+    </div>
+</div>

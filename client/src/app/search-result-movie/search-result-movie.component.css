@@ -1,0 +1,14 @@
+.movie-card {
+  display: flex;
+  gap: 1em;
+}
+
+.movie-card__poster {
+  width: 20%;
+}
+
+button[type="button"] {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
