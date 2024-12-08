@@ -10,6 +10,14 @@ namespace API.Repositories;
 
 public class MovieRepository(DataContext context, IMapper mapper) : IMovieRepository
 {
+    public async Task<IEnumerable<MovieDto>> GetMoviesAsync()
+    {
+        return await context.Movies
+            .Include(x => x.Metadata)
+            .ProjectTo<MovieDto>(mapper.ConfigurationProvider)
+            .ToListAsync();
+    }
+    
     public async Task<MovieDto?> GetByIdAsync(int id)
     {
         return await context.Movies

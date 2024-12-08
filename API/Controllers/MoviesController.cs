@@ -8,6 +8,14 @@ namespace API.Controllers
     [ApiController]
     public class MoviesController(IMovieRepository movieRepository, IOmdbService omdbService) : ControllerBase
     {
+        [HttpGet]
+        public async Task<IEnumerable<MovieDto>> GetMovies()
+        {
+            var movies = await movieRepository.GetMoviesAsync();
+
+            return movies;
+        }
+        
         [HttpGet("{id}")]
         public async Task<ActionResult<MovieDto>> GetMovieById(int id)
         {
@@ -17,6 +25,17 @@ namespace API.Controllers
                 return NotFound(); 
 
             return movie;
+        }
+
+        [HttpGet("search")]
+        public async Task<ActionResult<OmdbSearchResponse?>> SearchMovies(string query, int page)
+        {
+            var results = await omdbService.SearchMoviesAsync(query, page);
+
+            if(results?.Search == null)
+                return NotFound(new { message = "No matching results"});
+
+            return results;
         }
         
         [HttpPost]
@@ -70,17 +89,6 @@ namespace API.Controllers
                 return NoContent();
 
             return BadRequest(new { message = "Problem during deletion!" });
-        }
-
-        [HttpGet("search")]
-        public async Task<ActionResult<OmdbSearchResponse?>> SearchMovies(string query, int page)
-        {
-            var results = await omdbService.SearchMoviesAsync(query, page);
-
-            if(results?.Search == null)
-                return NotFound(new { message = "No matching results"});
-
-            return results;
         }
     }
 }
