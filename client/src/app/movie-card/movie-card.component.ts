@@ -1,4 +1,5 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Movie } from '../_types/Movie';
 
 @Component({
@@ -9,4 +10,9 @@ import { Movie } from '../_types/Movie';
 })
 export class MovieCardComponent {
   movie = input.required<Movie>();
+  router = inject(Router);
+
+  goToDetails(id: number) {
+    this.router.navigateByUrl(`/movie-details/${id}`);
+  }
 }

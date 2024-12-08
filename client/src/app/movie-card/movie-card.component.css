@@ -37,8 +37,7 @@
   transition: transform 0.3s;
 }
 
-.movie-card__details-btn,
-.movie-card__edit-btn {
+.movie-card__details-btn {
   border: none;
   background: none;
   cursor: pointer;

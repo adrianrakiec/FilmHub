@@ -12,4 +12,5 @@ export type Metadata = {
   awards: string;
   ratings: string;
   lastUpdated: string;
+  runtime: string;
 };

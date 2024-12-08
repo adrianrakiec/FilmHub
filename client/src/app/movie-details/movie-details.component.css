@@ -1,0 +1,42 @@
+.movie {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3em;
+}
+
+.movie__details {
+  margin-left: 2em;
+}
+
+.movie__title {
+  font-size: 2rem;
+}
+
+.movie__metadata {
+  margin-top: 1em;
+}
+
+.movie__metadata .movie__badge:first-child {
+  margin-left: 0;
+}
+
+.movie__badge {
+  background-color: #eee;
+  color: #555;
+  font-size: 0.9rem;
+  padding: 0.5em 1em;
+  border-radius: 20px;
+  margin: 0 0.5em;
+}
+
+.movie__info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2em;
+  gap: 1em;
+}
+
+.movie__rating {
+  margin-bottom: 2em;
+}

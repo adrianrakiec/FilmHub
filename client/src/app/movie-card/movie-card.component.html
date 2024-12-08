@@ -2,8 +2,8 @@
     <div class="movie-card__image">
         <img class="movie-card__img" [src]="movie().metadata.posterUrl" [alt]="movie().title" />
         <div class="movie-card__actions">
-            <button class="movie-card__details-btn"><i class="fas fa-info-circle"></i></button>
-            <button class="movie-card__edit-btn"><i class="fas fa-pencil-alt"></i></button>
+            <button class="movie-card__details-btn" (click)="goToDetails(movie().id)"><i
+                    class="fas fa-info-circle"></i></button>
         </div>
     </div>
     <button class="movie-card__delete-btn">X</button>

@@ -1,0 +1,20 @@
+<section class="movie">
+    @if (movie) {
+    <img [src]="movie.metadata.posterUrl" [alt]="movie.title">
+    <div class="movie__details">
+        <h2 class="movie__title">{{movie.title}}</h2>
+        <div class="movie__metadata">
+            <span class="movie__badge">Year: {{movie.metadata.year}}</span>
+            <span class="movie__badge">Genre: {{movie.metadata.genre}}</span>
+            <span class="movie__badge">Runtime: {{movie.metadata.runtime}}</span>
+        </div>
+        <div class="movie__info">
+            <h3 class="movie__rating">IMDb rating: {{movie.metadata.ratings}}</h3>
+            <h3>Plot</h3>
+            <p>{{movie.metadata.plot}}</p>
+            <h3>Actors</h3>
+            <p>{{movie.metadata.actors}}</p>
+        </div>
+    </div>
+    }
+</section>
