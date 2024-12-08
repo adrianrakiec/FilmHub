@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Movie } from '../_types/Movie';
 import { environment } from '../../environments/environment.development';
 
@@ -9,9 +9,12 @@ import { environment } from '../../environments/environment.development';
 export class MoviesService {
   private readonly http = inject(HttpClient);
   private readonly baseUrl = environment.apiUrl;
+  movies = signal<Movie[]>([]);
 
   getMovies() {
-    return this.http.get<Movie[]>(this.baseUrl + 'movies');
+    return this.http.get<Movie[]>(this.baseUrl + 'movies').subscribe({
+      next: (movies) => this.movies.set(movies),
+    });
   }
 
   getMovieDetails(id: string) {
@@ -23,6 +26,11 @@ export class MoviesService {
   }
 
   deleteMovie(id: number) {
-    return this.http.delete(this.baseUrl + `movies/${id}`);
+    return this.http.delete(this.baseUrl + `movies/${id}`).subscribe({
+      next: () => {
+        const updatedMovies = this.movies().filter((movie) => movie.id !== id);
+        this.movies.set(updatedMovies);
+      },
+    });
   }
 }

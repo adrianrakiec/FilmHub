@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { MoviesService } from '../_services/movies.service';
 import { MovieCardComponent } from '../movie-card/movie-card.component';
-import { Movie } from '../_types/Movie';
 
 @Component({
   selector: 'app-movies-list',
@@ -10,20 +9,13 @@ import { Movie } from '../_types/Movie';
   styleUrl: './movies-list.component.css',
 })
 export class MoviesListComponent implements OnInit {
-  private movieService = inject(MoviesService);
-  movies: Movie[] = [];
+  movieService = inject(MoviesService);
 
   ngOnInit(): void {
-    this.getMovies();
+    if (this.movieService.movies().length === 0) this.getMovies();
   }
 
   getMovies(): void {
-    this.movieService.getMovies().subscribe({
-      next: (data) => (this.movies = data),
-    });
-  }
-
-  onDeleteMovie(id: number): void {
-    this.movies = this.movies.filter((movie) => movie.id !== id);
+    this.movieService.getMovies();
   }
 }
