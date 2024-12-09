@@ -34,10 +34,12 @@ public class MovieRepository(DataContext context, IMapper mapper) : IMovieReposi
             UserNotes = createMovieDto.UserNotes
         };
 
-        movie.Metadata = movie.Title == null ? null : new MovieMetadata { LastUpdated = DateTime.Now };
-        if(movie.Metadata == null) 
-            return mapper.Map<MovieDto>(movie);
-    
+        movieMetadata.LastUpdated = DateTime.Now;
+
+        if(movieMetadata.ImdbId == null) return mapper.Map<MovieDto>(movie);
+
+        movie.Metadata = movieMetadata;
+
         context.Movies.Add(movie);
         await context.SaveChangesAsync();
 

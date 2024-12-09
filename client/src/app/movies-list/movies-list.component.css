@@ -17,3 +17,12 @@
   border-radius: 50%;
   cursor: pointer;
 }
+
+.movies-list__select {
+  margin-top: 1em;
+  padding: 0.7em 1.4em;
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  border-radius: 1em;
+  cursor: pointer;
+}

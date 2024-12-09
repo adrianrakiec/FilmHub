@@ -1,7 +1,19 @@
 <section class="movies-list">
+    <select [(ngModel)]="selectedOption" class="movies-list__select">
+        <option value={{FilterOption.All}}>All</option>
+        <option value={{FilterOption.Watched}}>Watched</option>
+        <option value={{FilterOption.NotWatched}}>Not Watched</option>
+    </select>
     <ul class="movies-list__items">
         @for (movie of movieService.movies(); track $index) {
+        @if (selectedOption === FilterOption.All) {
         <li><app-movie-card [movie]="movie" /></li>
+        } @else if (selectedOption === FilterOption.Watched && movie.isWatched) {
+        <li><app-movie-card [movie]="movie" /></li>
+        }
+        @else if (selectedOption === FilterOption.NotWatched && !movie.isWatched) {
+        <li><app-movie-card [movie]="movie" /></li>
+        }
         }
     </ul>
     <button class="movies-list__add-movie-btn" (click)="goToAddMovie()">+</button>
