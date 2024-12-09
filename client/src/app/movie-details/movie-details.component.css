@@ -16,6 +16,8 @@
 
 .movie__metadata {
   margin-top: 1em;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .movie__metadata .movie__badge:first-child {
@@ -27,7 +29,7 @@
   color: #555;
   font-size: 0.9rem;
   padding: 0.5em 1em;
-  border-radius: 20px;
+  border-radius: 1.5em;
   margin: 0 0.5em;
 }
 
@@ -43,13 +45,36 @@
 }
 
 .movie__watched {
-  position: absolute;
-  top: 0;
-  right: 0;
+  position: fixed;
+  top: 5%;
+  right: 5%;
 }
 
 .movie__watched-btn {
   border-radius: 2em;
   padding: 1em 2em;
   cursor: pointer;
+}
+
+@media (max-width: 850px) {
+  .movie {
+    flex-direction: column;
+    padding: 2em;
+  }
+
+  .movie__watched {
+    position: fixed;
+    top: 5%;
+    right: 5%;
+  }
+
+  .movie__metadata {
+    flex-direction: column;
+    gap: 1em;
+    width: 30%;
+  }
+
+  .movie__title {
+    margin-top: 1em;
+  }
 }
